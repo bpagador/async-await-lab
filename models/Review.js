@@ -1,21 +1,26 @@
+
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-  title: {
+  movie: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Movie',
+    required: true
+  },
+
+  authorName: {
     type: String,
     required: true
   },
 
-  description: {
+  comment: {
     type: String,
     required: true
-  },
-
-  studio: {
-    type: String,
-    required: true,
   }
-  
+
+}, {
+  timestamps: true
+
 }, {
   toJSON: {
     virtuals: true,
@@ -26,4 +31,4 @@ const schema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Movie', schema);
+module.exports = mongoose.model('Review', schema);

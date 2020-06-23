@@ -1,5 +1,18 @@
 const { getCharacter, getManyCharacters } = require('../lib/rick-and-morty-api');
 
+jest.mock('superagent', () => ({
+  get: () => {
+    return Promise.resolve({
+      body: {
+        id: 1, 
+        name: 'Rick Sanchez',
+        species: 'Human',
+        status: 'Alive'
+      }
+    });
+  }
+}));
+
 describe('get character functions', () => {
   it('gets one character', () => {
     return getCharacter(1)
